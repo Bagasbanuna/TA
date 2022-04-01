@@ -1,0 +1,109 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  Id           Int            @id @default(autoincrement())
+  username     String
+  email        String
+  password     String
+  createAt     DateTime       @default(now())
+  updateAt     DateTime       @updatedAt
+  profile      profile[]
+  rencanakerja rencanakerja[]
+  kritiksaran  kritiksaran[]
+}
+
+model profile {
+  Id            Int       @id @default(autoincrement())
+  nim           Int       @unique
+  namaDepan     String?
+  namaBelakang  String?
+  alamat        String?
+  tempatLahir   String?
+  tanggalLahir  String?
+  jenisKelamin  String?
+  nomorHp       String?
+  tahunAngkatan Int?
+  fotoKtp       String?
+  fotoProfile   String?
+  User          user?     @relation(fields: [userId], references: [Id])
+  userId        Int?
+  jabatan       jabatan[]
+  divisi        divisi[]
+  jurusan       jurusan[]
+}
+
+model jabatan {
+  Id          Int      @id @unique 
+  namaJabatan String
+  Profile     profile? @relation(fields: [profileId], references: [Id])
+  profileId   Int?
+}
+
+model divisi {
+  Id         Int      @id @unique
+  namaDivisi String
+  Profile    profile? @relation(fields: [profileId], references: [Id])
+  profileId  Int?
+}
+
+model jurusan {
+  Id          Int      @id @unique
+  namaJurusan String
+  Profile     profile? @relation(fields: [profileId], references: [Id])
+  profileId   Int?
+}
+
+model rencanakerja {
+  Id         Int      @id @unique()
+  title      String
+  tanggal    DateTime
+  keterangan String
+  createAt   DateTime
+  updateAt   DateTime
+  status     String
+  User       user?    @relation(fields: [userId], references: [Id])
+  userId     Int?
+  files      files[]
+}
+
+model files {
+  Id             Int           @id @unique
+  file           String
+  createAt       DateTime
+  jenisFile      jenisFile[]
+  Rencanakerja   rencanakerja? @relation(fields: [rencanakerjaId], references: [Id])
+  rencanakerjaId Int?
+  gallery        gallery[]
+}
+
+model jenisFile {
+  Id        Int    @id @unique
+  jenisFile String
+  Files     files? @relation(fields: [filesId], references: [Id])
+  filesId   Int?
+}
+
+model gallery {
+  Id      Int    @id @unique
+  gambar  String
+  Files   files? @relation(fields: [filesId], references: [Id])
+  filesId Int?
+}
+
+model kritiksaran {
+  Id       Int    @id @unique
+  subjek   String
+  komentar String
+  User     user?  @relation(fields: [userId], references: [Id])
+  userId   Int
+}
