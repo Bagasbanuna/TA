@@ -1,4 +1,5 @@
 const express = require("express");
+const { GetDivisi, CreateDivisi } = require("./controllers/divisi");
 const { GetJabatan, CreateJabatan } = require("./controllers/jabatan");
 const { GetProfile, CreateProfile } = require("./controllers/profile");
 const { GetUser, CreateUser } = require("./controllers/users");
@@ -15,6 +16,11 @@ api.post('/profile', CreateProfile)
 //jabatan
 api.get('/jabatan', GetJabatan)
 api.post('/jabatan', CreateJabatan)
+
+//divisi
+api.get('/divisi', GetDivisi)
+api.post('/divisi', CreateDivisi)
+
 
 
 module.exports = {api}

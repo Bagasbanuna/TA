@@ -17,7 +17,7 @@ const CreateDivisi = expressAsyncHandler(async(req, res) => {
         data: {
             Id: Number(Id),
             namaDivisi: namaDivisi,
-            profileId:Number(profileId),
+            profileId:Number(profileId)
         }
     })
 
@@ -31,4 +31,4 @@ const CreateDivisi = expressAsyncHandler(async(req, res) => {
 })
 
 
-module.exports = {GetDivisi}
+module.exports = {GetDivisi, CreateDivisi}
