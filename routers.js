@@ -1,6 +1,7 @@
 const express = require("express");
 const { GetDivisi, CreateDivisi } = require("./controllers/divisi");
 const { GetJabatan, CreateJabatan } = require("./controllers/jabatan");
+const { GetJurusan, CreateJurusan } = require("./controllers/jurusan");
 const { GetProfile, CreateProfile } = require("./controllers/profile");
 const { GetUser, CreateUser } = require("./controllers/users");
 const api = express.Router()
@@ -21,6 +22,8 @@ api.post('/jabatan', CreateJabatan)
 api.get('/divisi', GetDivisi)
 api.post('/divisi', CreateDivisi)
 
-
+//jurusan
+api.get('/jurusan', GetJurusan)
+api.post('/jurusan', CreateJurusan)
 
 module.exports = {api}
