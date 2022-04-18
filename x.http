@@ -78,3 +78,78 @@ Content-Type: application/json
     "namaJurusan": "TI MDI",
     "profileId": 1
 }
+
+//Rencanakerja
+### get rencanakerja
+GET http://localhost:3000/api/v1/rencanakerja HTTP/1.1
+
+### post rencanakerja
+POST http://localhost:3000/api/v1/rencanakerja HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 001,
+    "title": "Kajian Ahad",
+    "tanggal": 11,
+    "keterangan": "Kajian diadakan di aula",
+    "status": "Acc",
+    "userId": 01
+}
+
+//FILES
+### get files
+GET http://localhost:3000/api/v1/files HTTP/1.1
+
+### post files
+POST http://localhost:3000/api/v1/files HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 001,
+    "file": "LPJ Semnas",
+    "jenisFile": "Lembaran Pertanggung Jawaban",
+    "rencanakerjaId": 01
+}
+
+//JENISFILES
+### get jenisfile
+GET http://localhost:3000/api/v1/jenisfile HTTP/1.1
+
+### post jenisfile
+POST http://localhost:3000/api/v1/jenisfile HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 001,
+    "jenisFile": "Lembar Pertanggung Jawaban",
+    "filesId": 01
+}
+
+//GALLERY
+### get gallery
+GET http://localhost:3000/api/v1/gallery HTTP/1.1
+
+### post gallery
+POST http://localhost:3000/api/v1/gallery HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 001,
+    "gambar": "nfndsnfnf",
+    "filesId": 01
+}
+
+//KRITIKSARAN
+### get kritiksaran
+GET http://localhost:3000/api/v1/kritiksaran HTTP/1.1
+
+### post kritiksaran
+POST http://localhost:3000/api/v1/kritiksaran HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 001,
+    "subjek": "Musola",
+    "komentar": "Jangan lupa piket",
+    "userId": 01
+}
