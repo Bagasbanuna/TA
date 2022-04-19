@@ -43,7 +43,7 @@ model profile {
 }
 
 model jabatan {
-  Id          Int      @id @unique 
+  Id          Int      @id @unique
   namaJabatan String
   Profile     profile? @relation(fields: [profileId], references: [Id])
   profileId   Int?
@@ -64,14 +64,14 @@ model jurusan {
 }
 
 model rencanakerja {
-  Id         Int      @id @unique()
+  Id         Int       @id @unique()
   title      String
   tanggal    DateTime
   keterangan String
-  createAt   DateTime @default(now())
-  updateAt   DateTime @updatedAt
+  createAt   DateTime? @default(now())
+  updateAt   DateTime? @updatedAt
   status     String
-  User       user?    @relation(fields: [userId], references: [Id])
+  User       user?     @relation(fields: [userId], references: [Id])
   userId     Int?
   files      files[]
 }
@@ -79,18 +79,19 @@ model rencanakerja {
 model files {
   Id             Int           @id @unique
   file           String
-  createAt       DateTime @default(now())
-  jenisFile      jenisFile[]
+  createAt       DateTime      @default(now())
+  jenisFile      jenisFile?    @relation(fields: [jenisFileId], references: [Id])
   Rencanakerja   rencanakerja? @relation(fields: [rencanakerjaId], references: [Id])
   rencanakerjaId Int?
   gallery        gallery[]
+  jenisFileId    Int?
 }
 
 model jenisFile {
-  Id        Int    @id @unique
+  Id        Int     @id @unique
   jenisFile String
-  Files     files? @relation(fields: [filesId], references: [Id])
   filesId   Int?
+  files     files[]
 }
 
 model gallery {
