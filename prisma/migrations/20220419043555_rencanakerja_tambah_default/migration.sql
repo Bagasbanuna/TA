@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `rencanakerja` MODIFY `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3);

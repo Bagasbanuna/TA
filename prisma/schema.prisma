@@ -68,8 +68,8 @@ model rencanakerja {
   title      String
   tanggal    DateTime
   keterangan String
-  createAt   DateTime
-  updateAt   DateTime
+  createAt   DateTime @default(now())
+  updateAt   DateTime @updatedAt
   status     String
   User       user?    @relation(fields: [userId], references: [Id])
   userId     Int?
@@ -79,7 +79,7 @@ model rencanakerja {
 model files {
   Id             Int           @id @unique
   file           String
-  createAt       DateTime
+  createAt       DateTime @default(now())
   jenisFile      jenisFile[]
   Rencanakerja   rencanakerja? @relation(fields: [rencanakerjaId], references: [Id])
   rencanakerjaId Int?
