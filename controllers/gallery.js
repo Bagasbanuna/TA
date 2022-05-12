@@ -1,6 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const { json } = require("express");
 const expressAsyncHandler = require("express-async-handler");
+const req = require("express/lib/request");
 const prisma = new PrismaClient();
 
 
@@ -32,4 +33,33 @@ const CreateGallery = expressAsyncHandler (async (req, res)=>{
 
 })
 
-module.exports = {GetGallery, CreateGallery}
+const UpdateGallery = expressAsyncHandler (async (req,res)=> {
+    let {Id, gambar, filesId} = req.body
+
+    let glry = await prisma.gallery.update({
+        data: {
+            Id: Number(Id),
+            gambar: gambar,
+            filesId: Number(filesId)
+        },
+        where: {
+            Id: Number(Id)
+        }
+    })
+    res.json(glry)
+})
+
+const DeleteGallery = expressAsyncHandler (async (req, res) =>{
+    let {Id} =req.body
+
+    let glry = await prisma.gallery.delete({
+        where: {
+            Id: Number(Id)
+        }
+    })
+    res.json(glry)
+})
+
+
+
+module.exports = {GetGallery, CreateGallery, UpdateGallery, DeleteGallery}

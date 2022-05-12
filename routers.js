@@ -1,11 +1,11 @@
 const express = require("express");
 const { GetDivisi, CreateDivisi, UpdateDivisi, DeleteDivisi } = require("./controllers/divisi");
-const { GetFiles, CreateFiles } = require("./controllers/files");
-const { GetGallery, CreateGallery } = require("./controllers/gallery");
+const { GetFiles, CreateFiles, UpdateFiles, DeleteFiles } = require("./controllers/files");
+const { GetGallery, CreateGallery, UpdateGallery, DeleteGallery } = require("./controllers/gallery");
 const { GetJabatan, CreateJabatan, UpdateJabatan, DeleteJabatan } = require("./controllers/jabatan");
-const { GetJenisfile, CreateJenisFiles } = require("./controllers/jenisFile");
+const { GetJenisfile, CreateJenisfile, UpdateJenisfile, DeleteJenisfile } = require("./controllers/jenisFile");
 const { GetJurusan, CreateJurusan, UpdateJurusan, DeleteJurusan } = require("./controllers/jurusan");
-const { GetKritiksaran, CreateKritiksaran } = require("./controllers/kritiksaran");
+const { GetKritiksaran, CreateKritiksaran, UpdateKritiksaran, DeleteKritiksaran } = require("./controllers/kritiksaran");
 const { GetProfile, CreateProfile, UpdateProfile, DeleteProfile } = require("./controllers/profile");
 const { GetRencanakerja, CreateRencanakerja, UpdateRencanakerja, DeleteRencanakerja } = require("./controllers/rencanakerja");
 const { GetUser, CreateUser, UpdateUser, DeleteUser } = require("./controllers/users");
@@ -50,17 +50,25 @@ api.post('/rencanakerja/delete', DeleteRencanakerja)
 //files
 api.get('/files', GetFiles)
 api.post('/files', CreateFiles)
+api.post('/files/update', UpdateFiles)
+api.post('/files/delete', DeleteFiles)
 
 //jenisfile
 api.get('/jenisfile', GetJenisfile)
-api.post('/jenisfile', CreateJenisFiles)
+api.post('/jenisfile', CreateJenisfile)
+api.post('/jenisfile/update', UpdateJenisfile)
+api.post('/jenisfile/delete', DeleteJenisfile)
 
 //gallery
 api.get('/gallery', GetGallery)
 api.post('/gallery', CreateGallery)
+api.post('/gallery/update', UpdateGallery)
+api.post('/gallery/delete', DeleteGallery)
 
 //kritiksaran
 api.get('/kritiksaran', GetKritiksaran)
 api.post('/kritiksaran', CreateKritiksaran)
+api.post('/kritiksaran/update', UpdateKritiksaran)
+api.post('/kritiksaran/delete', DeleteKritiksaran)
 
 module.exports = {api}

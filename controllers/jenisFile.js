@@ -10,7 +10,7 @@ const GetJenisfile = expressAsyncHandler (async (req,res) =>{
     res.json(jenf);
 })
 
-const CreateJenisFiles = expressAsyncHandler (async (req, res) =>{
+const CreateJenisfile = expressAsyncHandler (async (req, res) =>{
     let {Id, jenisFile, filesId} = req.body
 
     let jenf = await prisma.jenisFile.create({
@@ -30,4 +30,34 @@ const CreateJenisFiles = expressAsyncHandler (async (req, res) =>{
     res.json(result)
 })
 
-module.exports = {GetJenisfile, CreateJenisFiles}
+const UpdateJenisfile = expressAsyncHandler (async (req, res)=> {
+    let {Id, jenisFile, filesId} = req.body
+
+    let jenf = await prisma.jenisFile.update({
+        data: {
+            Id: Number(Id),
+            jenisFile: jenisFile,
+            filesId: Number(filesId)
+        },
+        where: {
+            Id: Number(Id)
+        }
+    })
+    res.json(jenf)
+})
+
+const DeleteJenisfile = expressAsyncHandler (async (req, res)=> {
+    let {Id} =req.body
+
+    let jenf = await prisma.jenisFile.delete({
+        where: {
+            Id: Number(Id)
+        }
+    })
+    res.json(jenf)
+})
+
+
+
+
+module.exports = {GetJenisfile, CreateJenisfile, UpdateJenisfile, DeleteJenisfile}

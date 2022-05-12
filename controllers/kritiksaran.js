@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const expressAsyncHandler = require("express-async-handler");
+const req = require("express/lib/request");
 const prisma = new PrismaClient();
 
 
@@ -31,4 +32,33 @@ const CreateKritiksaran = expressAsyncHandler (async (req, res)=> {
     res.json(result)
 })
 
-module.exports = {GetKritiksaran, CreateKritiksaran}
+const UpdateKritiksaran = expressAsyncHandler (async (req,res)=> {
+    let {Id, subjek, komentar, userId} = req.body
+
+    let krisa = await prisma.kritiksaran.update({
+        data: {
+            Id: Number(Id),
+            subjek: subjek,
+            komentar: komentar,
+            userId: Number(userId)
+        },
+        where: {
+            Id: Number(Id)
+        }
+    })
+    res.json(krisa)
+})
+
+const DeleteKritiksaran = expressAsyncHandler (async (req, res) =>{
+    let {Id} =req.body
+
+    let krisa = await prisma.kritiksaran.delete({
+        where: {
+            Id: Number(Id)
+        }
+    })
+    res.json(krisa)
+})
+
+
+module.exports = {GetKritiksaran, CreateKritiksaran, UpdateKritiksaran, DeleteKritiksaran}
