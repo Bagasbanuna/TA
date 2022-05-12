@@ -13,7 +13,7 @@ const GetKritiksaran = expressAsyncHandler (async (req, res)=> {
 const CreateKritiksaran = expressAsyncHandler (async (req, res)=> {
     let {Id, subjek, komentar, userId} = req.body
 
-    let krisa = await prisma.create({
+    let krisa = await prisma.kritiksaran.create({
         data: {
             Id: Number(Id),
             subjek: subjek,

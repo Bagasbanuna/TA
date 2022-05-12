@@ -1,9 +1,9 @@
 //USER
 ### get user
-GET http://localhost:3000/api/v1/user HTTP/1.1
+GET http://localhost:5000/api/v1/user HTTP/1.1
 
 ### create user
-POST http://localhost:3000/api/v1/user HTTP/1.1
+POST http://localhost:5000/api/v1/user HTTP/1.1
 Content-Type: application/json
 
 {
@@ -12,12 +12,33 @@ Content-Type: application/json
     "password": "1234"
 }
 
+### update user
+POST http://localhost:5000/api/v1/user/update HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id" : 1,
+    "username": "bagas nusantara",
+    "email": "bagas@gmail.com",
+    "password": "1234"
+}
+
+### delete user
+POST http://localhost:5000/api/v1/user/delete HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id" : 2
+}
+
+
+/////AYO SEMANGAT/////
 //PROFILE
 ### get profile
-GET http://localhost:3000/api/v1/profile HTTP/1.1
+GET http://localhost:5000/api/v1/profile HTTP/1.1
 
 ### create profile
-POST http://localhost:3000/api/v1/profile HTTP/1.1
+POST http://localhost:5000/api/v1/profile HTTP/1.1
 Content-Type: application/json
 
 {
@@ -36,120 +57,233 @@ Content-Type: application/json
 
 }
 
+### update profile
+POST http://localhost:5000/api/v1/profile/update HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "nim": "1001",
+    "namaDepan": "abil aja",
+    "namaBelakang": "bagas",
+    "alamat": "jalan bali dewata",
+    "tempatLahir": "jember",
+    "tanggalLahir": "10 mei 2000",
+    "jenisKelamin": "laki-laki",
+    "nomorHp": "082123456789",
+    "tahunAngkatan": "2018",
+    "fotoKtp": "fmisfmkmfkdmfk",
+    "fotoProfile": "Mkasnndnwdnad",
+    "userId": 1
+
+}
+
+### delete profile
+POST http://localhost:5000/api/v1/profile/delete HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id" : 1
+}
+
+
+/////AYO SEMANGAT/////
 //JABATAN
 ### get jabatan
-GET http://localhost:3000/api/v1/jabatan HTTP/1.1
+GET http://localhost:5000/api/v1/jabatan HTTP/1.1
 
-### post jabatan
-POST http://localhost:3000/api/v1/jabatan HTTP/1.1
+### create jabatan
+POST http://localhost:5000/api/v1/jabatan HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id": 2,
-    "namaJabatan": "ketua 1",
-    "profileId": 3
+    "Id": 1,
+    "namaJabatan": "Ketua",
+    "profileId": 1
+}
+
+### update jabatan
+POST http://localhost:5000/api/v1/jabatan/update HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "namaJabatan": "Ketua Umum",
+    "profileId": 1
+}
+
+### delete jabatan
+POST http://localhost:5000/api/v1/jabatan/delete HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id" : 1
 }
 
 
+/////AYO SEMANGAT/////
 //DIVISI
 ### get divisi
-GET http://localhost:3000/api/v1/divisi HTTP/1.1
+GET http://localhost:5000/api/v1/divisi HTTP/1.1
 
-### post divisi
-POST http://localhost:3000/api/v1/divisi HTTP/1.1
+### create divisi
+POST http://localhost:5000/api/v1/divisi HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id": 201,
-    "namaDivisi": "Inti  aja bngt",
-    "profileId": 2
+    "Id": 1,
+    "namaDivisi": "Inti",
+    "profileId": 1
 }
+
+### update divisi
+POST http://localhost:5000/api/v1/divisi/update HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "namaDivisi": "Inti jj aja",
+    "profileId": 1
+}
+
+### delete divisi
+POST http://localhost:5000/api/v1/divisi/delete HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id" : 1
+}
+
+
 
 //JURUSAN
 ### get jurusan
-GET http://localhost:3000/api/v1/jurusan HTTP/1.1
+GET http://localhost:5000/api/v1/jurusan HTTP/1.1
 
-### post jurusan
-POST http://localhost:3000/api/v1/jurusan HTTP/1.1
+### create jurusan
+POST http://localhost:5000/api/v1/jurusan HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id": 2,
+    "Id": 1,
+    "namaJurusan": "TI MDI",
+    "profileId": 1
+}
+
+### update jurusan
+POST http://localhost:5000/api/v1/jurusan/update HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 1,
     "namaJurusan": "TI DGM",
     "profileId": 1
 }
 
+### delete jurusan
+POST http://localhost:5000/api/v1/jurusan/delete HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id" : 1
+}
+
+
+/////AYO SEMANGAT/////
 //Rencanakerja
 ### get rencanakerja
-GET http://localhost:3000/api/v1/rencanakerja HTTP/1.1
+GET http://localhost:5000/api/v1/rencanakerja HTTP/1.1
 
-### post rencanakerja
-POST http://localhost:3000/api/v1/rencanakerja HTTP/1.1
+### create rencanakerja
+POST http://localhost:5000/api/v1/rencanakerja HTTP/1.1
 Content-Type: application/json
 
 {
     "Id": 1,
-    "title": "Kajian Ahad pagi",
+    "title": "Kajian Subuh",
     "tanggal": "2022-04-01",
-    "keterangan": "Kajian diadakan di aula",
-    "status": "Acc",
+    "keterangan": "Kajian diadakan di masjid",
+    "status": "Pending",
     "userId": 1
 }
 
-//FILES
-### get files
-GET http://localhost:3000/api/v1/files HTTP/1.1
-
-### post files
-POST http://localhost:3000/api/v1/files HTTP/1.1
+### update rencanakerja
+POST http://localhost:5000/api/v1/rencanakerja/update HTTP/1.1
 Content-Type: application/json
 
 {
     "Id": 1,
+    "title": "Kajian Pria",
+    "tanggal": "2022-04-01",
+    "keterangan": "Kajian diadakan di masjid",
+    "status": "Pending",
+    "userId": 1
+}
+
+### delete rencanakerja
+POST http://localhost:5000/api/v1/rencanakerja/delete HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id" : 1
+}
+
+
+/////AYO SEMANGAT/////
+//FILES
+### get files
+GET http://localhost:5000/api/v1/files HTTP/1.1
+
+### post files
+POST http://localhost:5000/api/v1/files HTTP/1.1
+Content-Type: application/json
+
+{
+    "Id": 2,
     "file": "LPJ Semnas",
-    "jenisFile": "Lembaran Pertanggung Jawaban",
-    "rencanakerjaId": 1
+    "rencanakerjaId": 2,
+    "jenisFileId": 2
 }
 
 //JENISFILES
 ### get jenisfile
-GET http://localhost:3000/api/v1/jenisfile HTTP/1.1
+GET http://localhost:5000/api/v1/jenisfile HTTP/1.1
 
 ### post jenisfile
-POST http://localhost:3000/api/v1/jenisfile HTTP/1.1
+POST http://localhost:5000/api/v1/jenisfile HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id": 001,
-    "jenisFile": "Lembar Pertanggung Jawaban",
-    "filesId": 01
+    "Id": 2,
+    "jenisFile": "BA",
+    "filesId": 2
 }
 
 //GALLERY
 ### get gallery
-GET http://localhost:3000/api/v1/gallery HTTP/1.1
+GET http://localhost:5000/api/v1/gallery HTTP/1.1
 
 ### post gallery
-POST http://localhost:3000/api/v1/gallery HTTP/1.1
+POST http://localhost:5000/api/v1/gallery HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id": 001,
-    "gambar": "nfndsnfnf",
-    "filesId": 01
+    "Id": 2,
+    "gambar": "rewofkmmfqeofo",
+    "filesId": 2
 }
 
 //KRITIKSARAN
 ### get kritiksaran
-GET http://localhost:3000/api/v1/kritiksaran HTTP/1.1
+GET http://localhost:5000/api/v1/kritiksaran HTTP/1.1
 
 ### post kritiksaran
-POST http://localhost:3000/api/v1/kritiksaran HTTP/1.1
+POST http://localhost:5000/api/v1/kritiksaran HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id": 011,
-    "subjek": "Musola",
-    "komentar": "Jangan lupa piket",
-    "userId": 1
+    "Id": 2,
+    "subjek": "Kamar mandi",
+    "komentar": "Jangan lupa bersihkan",
+    "userId": 2
 }

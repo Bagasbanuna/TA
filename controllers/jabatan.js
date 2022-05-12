@@ -32,4 +32,33 @@ const CreateJabatan = expressAsyncHandler(async (req, res) => {
     res.json(result)
 })
 
-module.exports = {GetJabatan, CreateJabatan}
+const UpdateJabatan = expressAsyncHandler (async (req, res) => {
+    let {Id, namaJabatan, profileId} = req.body
+    
+
+    let jbtn = await prisma.jabatan.update({
+        data : {
+            Id: Number(1),
+            namaJabatan: namaJabatan,
+            profileId: Number(profileId)
+        },
+        where: {
+            Id: Number(Id)
+        }
+    })
+
+    res.json(jbtn)
+})
+
+const DeleteJabatan = expressAsyncHandler (async (req, res) =>{
+    let {Id} = req.body
+
+    let jbtn = await prisma.jabatan.delete({
+        where: {
+            Id: Number(Id)
+        }
+    })
+    res.json(jbtn)
+})
+
+module.exports = {GetJabatan, CreateJabatan, UpdateJabatan, DeleteJabatan}

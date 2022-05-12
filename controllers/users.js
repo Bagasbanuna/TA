@@ -1,5 +1,7 @@
 const { PrismaClient } = require("@prisma/client");
 const expressAsyncHandler = require("express-async-handler");
+const req = require("express/lib/request");
+const res = require("express/lib/response");
 const prisma = new PrismaClient();
 
 
@@ -30,4 +32,35 @@ const CreateUser = expressAsyncHandler(async (req, res) => {
     res.json(result)
 })
 
-module.exports = {GetUser, CreateUser}
+const UpdateUser = expressAsyncHandler (async (req, res) => {
+    let {Id, email, username, password} = req.body
+
+
+    let usr = await prisma.user.update({
+        data: {
+            email: email,
+            password: password,
+            username: username,
+        },
+        where: {
+            Id: Number(Id)
+        }
+    })
+
+    res.json(usr)
+})
+
+const DeleteUser = expressAsyncHandler (async (req, res) =>{
+    let {Id, email, username, password} = req.body
+
+    let usr = await prisma.user.delete({
+        
+        where: {
+            Id: Number(Id)
+        }        
+    })
+
+    res.json(usr)
+})
+
+module.exports = {GetUser, CreateUser, UpdateUser, DeleteUser}

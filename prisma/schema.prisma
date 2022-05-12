@@ -35,7 +35,7 @@ model profile {
   tahunAngkatan Int?
   fotoKtp       String?
   fotoProfile   String?
-  User          user?     @relation(fields: [userId], references: [Id])
+  User          user?     @relation(fields: [userId], references: [Id],onDelete: NoAction)
   userId        Int?
   jabatan       jabatan[]
   divisi        divisi[]
@@ -71,11 +71,12 @@ model rencanakerja {
   createAt   DateTime? @default(now())
   updateAt   DateTime? @updatedAt
   status     String
-  User       user?     @relation(fields: [userId], references: [Id])
+  User       user?     @relation(fields: [userId], references: [Id],onDelete: NoAction)
   userId     Int?
   files      files[]
 }
 
+// harus ada data jenis file
 model files {
   Id             Int           @id @unique
   file           String
@@ -86,7 +87,7 @@ model files {
   gallery        gallery[]
   jenisFileId    Int?
 }
-
+//  
 model jenisFile {
   Id        Int     @id @unique
   jenisFile String
@@ -105,6 +106,6 @@ model kritiksaran {
   Id       Int    @id @unique
   subjek   String
   komentar String
-  User     user?  @relation(fields: [userId], references: [Id])
+  User     user?  @relation(fields: [userId], references: [Id],onDelete: NoAction)
   userId   Int
 }

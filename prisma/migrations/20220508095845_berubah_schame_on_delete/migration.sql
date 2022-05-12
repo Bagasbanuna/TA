@@ -66,8 +66,8 @@ CREATE TABLE `rencanakerja` (
     `title` VARCHAR(191) NOT NULL,
     `tanggal` DATETIME(3) NOT NULL,
     `keterangan` VARCHAR(191) NOT NULL,
-    `createAt` DATETIME(3) NOT NULL,
-    `updateAt` DATETIME(3) NOT NULL,
+    `createAt` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updateAt` DATETIME(3) NULL,
     `status` VARCHAR(191) NOT NULL,
     `userId` INTEGER NULL,
 
@@ -79,8 +79,9 @@ CREATE TABLE `rencanakerja` (
 CREATE TABLE `files` (
     `Id` INTEGER NOT NULL,
     `file` VARCHAR(191) NOT NULL,
-    `createAt` DATETIME(3) NOT NULL,
+    `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `rencanakerjaId` INTEGER NULL,
+    `jenisFileId` INTEGER NULL,
 
     UNIQUE INDEX `files_Id_key`(`Id`),
     PRIMARY KEY (`Id`)
@@ -118,7 +119,7 @@ CREATE TABLE `kritiksaran` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `profile` ADD CONSTRAINT `profile_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `profile` ADD CONSTRAINT `profile_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `jabatan` ADD CONSTRAINT `jabatan_profileId_fkey` FOREIGN KEY (`profileId`) REFERENCES `profile`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
@@ -130,16 +131,16 @@ ALTER TABLE `divisi` ADD CONSTRAINT `divisi_profileId_fkey` FOREIGN KEY (`profil
 ALTER TABLE `jurusan` ADD CONSTRAINT `jurusan_profileId_fkey` FOREIGN KEY (`profileId`) REFERENCES `profile`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `rencanakerja` ADD CONSTRAINT `rencanakerja_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `rencanakerja` ADD CONSTRAINT `rencanakerja_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `files` ADD CONSTRAINT `files_rencanakerjaId_fkey` FOREIGN KEY (`rencanakerjaId`) REFERENCES `rencanakerja`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `jenisFile` ADD CONSTRAINT `jenisFile_filesId_fkey` FOREIGN KEY (`filesId`) REFERENCES `files`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `files` ADD CONSTRAINT `files_jenisFileId_fkey` FOREIGN KEY (`jenisFileId`) REFERENCES `jenisFile`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `gallery` ADD CONSTRAINT `gallery_filesId_fkey` FOREIGN KEY (`filesId`) REFERENCES `files`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `kritiksaran` ADD CONSTRAINT `kritiksaran_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `kritiksaran` ADD CONSTRAINT `kritiksaran_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE NO ACTION ON UPDATE CASCADE;

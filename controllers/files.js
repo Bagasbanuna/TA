@@ -11,14 +11,14 @@ const GetFiles = expressAsyncHandler(async (req, res) =>{
 })
 
 const CreateFiles = expressAsyncHandler (async (req, res) =>{
-    let {Id, file, jenisFile, rencanakerjaId} = req.body
+    let {Id, file, jenisFile, rencanakerjaId, jenisFileId} = req.body
 
     let fls = await prisma.files.create({
         data: {
             Id: Number(Id),
             file: file,
-            jenisFile: jenisFile,
-            rencanakerjaId: Number(rencanakerjaId)
+            rencanakerjaId: Number(rencanakerjaId),
+            jenisFileId: Number(jenisFileId)
         }
     })
 

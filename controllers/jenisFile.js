@@ -13,7 +13,7 @@ const GetJenisfile = expressAsyncHandler (async (req,res) =>{
 const CreateJenisFiles = expressAsyncHandler (async (req, res) =>{
     let {Id, jenisFile, filesId} = req.body
 
-    let jenf = await prisma.create({
+    let jenf = await prisma.jenisFile.create({
         data: {
             Id: Number(Id),
             jenisFile: jenisFile,

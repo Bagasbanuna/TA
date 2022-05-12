@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const expressAsyncHandler = require("express-async-handler");
+const req = require("express/lib/request");
 const prisma = new PrismaClient();
 
 
@@ -24,7 +25,6 @@ const CreateRencanakerja = expressAsyncHandler (async (req, res) =>{
         }
     })
 
-
     let success = renja !=null
     let result = {
         success: success,
@@ -34,4 +34,37 @@ const CreateRencanakerja = expressAsyncHandler (async (req, res) =>{
     res.json(result)
 })
 
-module.exports = {GetRencanakerja, CreateRencanakerja}
+const UpdateRencanakerja = expressAsyncHandler (async (req, res)=>{
+    let {Id, title, tanggal, keterangan, status, userId} = req.body
+ 
+    let renja = await prisma.rencanakerja.update({
+        data : {
+            Id: Number(Id),
+            title: title,
+            tanggal: new Date (tanggal), 
+            keterangan: keterangan,
+            status: status,
+            userId: Number(userId)
+        },
+        where: {
+            Id: Number(Id)
+        }
+    })
+
+    res.json(renja)
+})
+
+const DeleteRencanakerja = expressAsyncHandler (async (req, res)=> {
+    let {Id} = req.body
+
+    let renja = await prisma.rencanakerja.delete({
+        where: {
+            Id: Number(Id)
+        }
+    })
+    res.json(renja)
+})
+
+
+
+module.exports = {GetRencanakerja, CreateRencanakerja, UpdateRencanakerja, DeleteRencanakerja}
