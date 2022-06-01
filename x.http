@@ -11,7 +11,7 @@ Content-Type: application/json
     "email": "bagas@gmail.com",
     "password": "1234"
 }
-
+ 
 ### update user
 POST http://localhost:5000/api/v1/user/update HTTP/1.1
 Content-Type: application/json
@@ -31,7 +31,33 @@ Content-Type: application/json
     "Id" : 2
 }
 
+// Registrasi
+### create registrasi
+POST http://localhost:5000/api/v1/registrasi HTTP/1.1
+Content-Type: application/json
 
+{
+    "username": "nabil",
+    "email": "bagas12@gmail.com",
+    "password": "1234"
+}
+
+// Login
+### create login
+POST http://localhost:5000/api/v1/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "banunas",
+    "password": "1234"
+}
+
+///User.Include///
+### get user include
+GET http://localhost:5000/api/v1/userInclude HTTP/1.1
+
+
+///////////////////////////////////////////
 /////AYO SEMANGAT/////
 //PROFILE
 ### get profile

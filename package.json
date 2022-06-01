@@ -14,7 +14,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "express-async-handler": "^1.2.0",
-    "jquery": "^3.6.0"
+    "jquery": "^3.6.0",
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
     "prisma": "^3.12.0"

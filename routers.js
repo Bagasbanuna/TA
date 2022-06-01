@@ -6,9 +6,12 @@ const { GetJabatan, CreateJabatan, UpdateJabatan, DeleteJabatan } = require("./c
 const { GetJenisfile, CreateJenisfile, UpdateJenisfile, DeleteJenisfile } = require("./controllers/jenisFile");
 const { GetJurusan, CreateJurusan, UpdateJurusan, DeleteJurusan } = require("./controllers/jurusan");
 const { GetKritiksaran, CreateKritiksaran, UpdateKritiksaran, DeleteKritiksaran } = require("./controllers/kritiksaran");
+const { CreateLogin } = require("./controllers/login");
 const { GetProfile, CreateProfile, UpdateProfile, DeleteProfile } = require("./controllers/profile");
+const { CreateRegistrasi } = require("./controllers/registrasi");
 const { GetRencanakerja, CreateRencanakerja, UpdateRencanakerja, DeleteRencanakerja } = require("./controllers/rencanakerja");
 const { GetUser, CreateUser, UpdateUser, DeleteUser } = require("./controllers/users");
+const { GetUserInclude } = require("./controllers/user_include");
 const api = express.Router()
 
 // User
@@ -70,5 +73,14 @@ api.get('/kritiksaran', GetKritiksaran)
 api.post('/kritiksaran', CreateKritiksaran)
 api.post('/kritiksaran/update', UpdateKritiksaran)
 api.post('/kritiksaran/delete', DeleteKritiksaran)
+
+// Registrasi
+api.post('/registrasi', CreateRegistrasi)
+
+// Login
+api.post('/login', CreateLogin)
+
+//
+api.get('/userInclude', GetUserInclude)
 
 module.exports = {api}

@@ -17,7 +17,7 @@ model user {
   password     String
   createAt     DateTime       @default(now())
   updateAt     DateTime       @updatedAt
-  profile      profile[]
+  profile      profile?
   rencanakerja rencanakerja[]
   kritiksaran  kritiksaran[]
 }

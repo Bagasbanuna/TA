@@ -27,7 +27,7 @@ const CreateUser = expressAsyncHandler(async (req, res) => {
     let result = {
         success: success,
         data: usr
-    }
+    } 
 
     res.json(result)
 })
