@@ -37,9 +37,9 @@ model profile {
   fotoProfile   String?
   User          user?     @relation(fields: [userId], references: [Id],onDelete: NoAction)
   userId        Int?
-  jabatan       jabatan[]
-  divisi        divisi[]
-  jurusan       jurusan[]
+  jabatan       jabatan?
+  divisi        divisi?
+  jurusan       jurusan?
 }
 
 model jabatan {

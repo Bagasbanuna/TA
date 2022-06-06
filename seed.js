@@ -94,7 +94,7 @@ const listDivisi = [
     },
     {
         "Id": 6,
-        "namaDivisi": "umas",
+        "namaDivisi": "humas",
     }
 ]
 
@@ -190,7 +190,7 @@ async function Coba() {
 
     console.log("seed divisi berhasil")
 
-    let listUser = Array.from(Array(100).keys())
+    let listUser = Array.from(Array(20).keys())
     let index = 1;
     for(let user of listUser){
         await prisma.user.upsert({
@@ -214,7 +214,7 @@ async function Coba() {
 
     console.log("seed user berhasil")
 
-    let listProfile = Array.from(Array(100).keys())
+    let listProfile = Array.from(Array(20).keys())
     let indexProfile = 1;
     for(let profile of listProfile){
         await prisma.profile.upsert({
@@ -231,7 +231,7 @@ async function Coba() {
                 tanggalLahir: "tanggalLahir" + indexProfile,
                 jenisKelamin: "jenisKelamin" + indexProfile,
                 nomorHp: "nomorHp" + indexProfile,
-                tahunAngkatan: Number(202 + indexProfile),
+                tahunAngkatan: Number(2015 + indexProfile),
                 fotoKtp: "fotoKtp" + indexProfile,
                 fotoProfile: "fotoProfile" + indexProfile,
                 userId: indexProfile
@@ -245,7 +245,7 @@ async function Coba() {
                 tanggalLahir: "tanggalLahir" + indexProfile,
                 jenisKelamin: "jenisKelamin" + indexProfile,
                 nomorHp: "nomorHp" + indexProfile,
-                tahunAngkatan: Number(202 + indexProfile),
+                tahunAngkatan: Number(2015 + indexProfile),
                 fotoKtp: "fotoKtp" + indexProfile,
                 fotoProfile: "fotoProfile" + indexProfile,
                 userId: indexProfile
@@ -253,7 +253,6 @@ async function Coba() {
         })
         indexProfile++;
     }
-
     console.log("seed profile berhasil")
 
 }
