@@ -24,7 +24,7 @@ api.post('/user/delete', DeleteUser)
 api.get('/profile', GetProfile)
 api.post('/profile', CreateProfile)
 api.post('/profile/update', UpdateProfile)
-api.post('/profile/delete', DeleteProfile)
+api.delete('/profile/delete/:Id', DeleteProfile)
 
 //jabatan
 api.get('/jabatan', GetJabatan)

@@ -1,4 +1,5 @@
-const { PrismaClient } = require("@prisma/client")
+const { PrismaClient } = require("@prisma/client");
+const { date } = require("prompts/dist/prompts");
 const prisma = new PrismaClient();
 
 const listJabatan = [
@@ -136,6 +137,17 @@ let jurusan = {
     "profileId": ""
 }
 
+let rencanakerja = {
+    "Id": "",
+    "title": "",
+    "tanggal": "",
+    "keterangan": "",
+    "status": "",
+    "User": "",
+    "userId": "",
+    "files": ""
+}
+
 
 
 async function Coba() {
@@ -156,7 +168,7 @@ async function Coba() {
 
     console.log("Seed Jabatan Berhasil")
 
-    for(let jurusan of listJurusan){
+    for (let jurusan of listJurusan) {
         await prisma.jurusan.upsert({
             where: {
                 Id: jurusan.Id
@@ -190,9 +202,40 @@ async function Coba() {
 
     console.log("seed divisi berhasil")
 
+
+
+
+    let listRencanaKerja = Array.from(Array(20).keys())
+    let indexRenja = 1;
+    for (let rencanakerja of listRencanaKerja) {
+        await prisma.rencanakerja.upsert({
+            where: {
+                Id: indexRenja
+            },
+            create: {
+                Id: indexRenja,
+                title: "user" + indexRenja,
+                tanggal: new Date('2020-11-01'),
+                keterangan: "user"+ indexRenja,
+                status: "user"+ indexRenja
+
+            },
+            update: {
+                title: "user" + indexRenja,
+                tanggal: new Date('2020-12-12'),
+                keterangan: "user"+ indexRenja,
+                status: "user"+ indexRenja
+            }
+        })
+        indexRenja++;
+    }
+
+    console.log(" rencana kerja sukses")
+
+
     let listUser = Array.from(Array(20).keys())
     let index = 1;
-    for(let user of listUser){
+    for (let user of listUser) {
         await prisma.user.upsert({
             where: {
                 Id: index
@@ -216,7 +259,7 @@ async function Coba() {
 
     let listProfile = Array.from(Array(20).keys())
     let indexProfile = 1;
-    for(let profile of listProfile){
+    for (let profile of listProfile) {
         await prisma.profile.upsert({
             where: {
                 Id: indexProfile
@@ -254,6 +297,8 @@ async function Coba() {
         indexProfile++;
     }
     console.log("seed profile berhasil")
+
+
 
 }
 

@@ -73,14 +73,14 @@ const UpdateProfile = expressAsyncHandler (async (req, res) => {
 })
 
 const DeleteProfile = expressAsyncHandler (async (req, res) =>{
-    let {Id} =req.body
+    let Id =req.params.Id
 
     let prof = await prisma.profile.delete({
         where: {
             Id: Number(Id)
         }
     })
-    res.json(prof)
+    res.status(201).json(prof)
 })
 
 

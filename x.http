@@ -28,7 +28,7 @@ POST http://localhost:5000/api/v1/user/delete HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id" : 2
+    "Id" : ""
 }
 
 // Registrasi
@@ -109,7 +109,7 @@ POST http://localhost:5000/api/v1/profile/delete HTTP/1.1
 Content-Type: application/json
 
 {
-    "Id" : 1
+    "Id" : ""
 }
 
 
