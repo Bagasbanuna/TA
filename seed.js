@@ -2,6 +2,25 @@ const { PrismaClient } = require("@prisma/client");
 const { date } = require("prompts/dist/prompts");
 const prisma = new PrismaClient();
 
+
+//     {
+//         "id": 1,
+//         "name": "guess"
+//     },
+//     {
+//         "id": 2,
+//         "name": "user"
+//     },
+//     {
+//         "id": 3,
+//         "name": "admin"
+//     },
+//     {
+//         "id": 4,
+//         "name": "super admin"
+//     }
+// ]
+
 const listJabatan = [
     {
         "Id": 1,
@@ -75,7 +94,7 @@ const listJurusan = [
 const listDivisi = [
     {
         "Id": 1,
-        "namaDivisi": "kaderisasi",
+        "namaDivisi": "inti",
     },
     {
         "Id": 2,
@@ -96,7 +115,12 @@ const listDivisi = [
     {
         "Id": 6,
         "namaDivisi": "humas",
+    },
+    {
+        "Id": 7,
+        "namaDivisi": "kaderisasi",
     }
+
 ]
 
 
@@ -149,7 +173,6 @@ let rencanakerja = {
 }
 
 
-
 async function Coba() {
     for (let jabatan of listJabatan) {
         await prisma.jabatan.upsert({
@@ -200,10 +223,26 @@ async function Coba() {
         })
     }
 
-    console.log("seed divisi berhasil")
+    console.log("seed ROLES berhasil")
 
+    const roles = ["guess", "user", "admin", "superAdmin"]
+    let indexRoles = 1;
+    for (let role of roles ){
+        await prisma.roles.upsert({
+            where:{
+                id: indexRoles
+            },
+            create:{
+                id: indexRoles,
+                name:role
+            },
+            update:{
+                name: role
+            }
+        })
+    }
 
-
+    console.log("berjasil Roles nya")
 
     let listRencanaKerja = Array.from(Array(20).keys())
     let indexRenja = 1;

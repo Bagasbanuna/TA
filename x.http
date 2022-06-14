@@ -48,8 +48,8 @@ POST http://localhost:5000/api/v1/login HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "banunas",
-    "password": "1234"
+    "username": "user1",
+    "password": "user1"
 }
 
 ///User.Include///
@@ -253,6 +253,10 @@ Content-Type: application/json
 {
     "Id" : 1
 }
+
+### get rencanakerja_by_user
+GET http://localhost:5000/api/v1/rencanakerja-by-user/3 HTTP/1.1
+
 
 
 /////AYO SEMANGAT/////

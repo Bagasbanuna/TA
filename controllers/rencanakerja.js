@@ -12,16 +12,18 @@ const GetRencanakerja = expressAsyncHandler (async (req, res) =>{
 })
 
 const CreateRencanakerja = expressAsyncHandler (async (req, res) =>{
-    let {Id, title, tanggal, keterangan, status, userId} = req.body
+    let body = req.body
+    console.log(body)
  
     let renja = await prisma.rencanakerja.create({
         data: {
-            Id: Number(Id),
-            title: title,
-            tanggal: new Date (tanggal), 
-            keterangan: keterangan,
-            status: status,
-            userId: Number(userId)
+            
+            title: body.title,
+            tanggal: new Date (body.tanggal), 
+            keterangan: body.keterangan,
+            status: body.status,
+            userId: body.userId
+            
         }
     })
 

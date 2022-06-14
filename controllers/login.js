@@ -22,21 +22,24 @@ const CreateLogin = expressAsyncHandler(async (req, res)=> {
                     }
                 }
             ]
+        },
+        include: {
+            profile: {
+                include: {
+                    divisi: true
+                    
+                }
+            }
         }
     })
 
-    if(login){
-        res.status(200).json({
-            success: "true",
-            data: login,
-            message: "login berhasil"
-        })
-    }else{
-        res.status(204).json({
-            success: false,
-            message: "username atau password salah"
-        })
-    }
+    res.status(login==null? 200:201).json({
+        success: login != null ,
+        data: login,
+        message: login == null? "password salah" : "login berhasil"
+    })
+
+    console.log(req.body)
 })
 
 module.exports = {CreateLogin}

@@ -1,4 +1,13 @@
 -- CreateTable
+CREATE TABLE `Roles` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NULL,
+    `userId` INTEGER NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
 CREATE TABLE `user` (
     `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(191) NOT NULL,
@@ -27,42 +36,43 @@ CREATE TABLE `profile` (
     `userId` INTEGER NULL,
 
     UNIQUE INDEX `profile_nim_key`(`nim`),
+    UNIQUE INDEX `profile_userId_key`(`userId`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `jabatan` (
-    `Id` INTEGER NOT NULL,
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `namaJabatan` VARCHAR(191) NOT NULL,
     `profileId` INTEGER NULL,
 
-    UNIQUE INDEX `jabatan_Id_key`(`Id`),
+    UNIQUE INDEX `jabatan_profileId_key`(`profileId`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `divisi` (
-    `Id` INTEGER NOT NULL,
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `namaDivisi` VARCHAR(191) NOT NULL,
     `profileId` INTEGER NULL,
 
-    UNIQUE INDEX `divisi_Id_key`(`Id`),
+    UNIQUE INDEX `divisi_profileId_key`(`profileId`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `jurusan` (
-    `Id` INTEGER NOT NULL,
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `namaJurusan` VARCHAR(191) NOT NULL,
     `profileId` INTEGER NULL,
 
-    UNIQUE INDEX `jurusan_Id_key`(`Id`),
+    UNIQUE INDEX `jurusan_profileId_key`(`profileId`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `rencanakerja` (
-    `Id` INTEGER NOT NULL,
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
     `tanggal` DATETIME(3) NOT NULL,
     `keterangan` VARCHAR(191) NOT NULL,
@@ -71,52 +81,50 @@ CREATE TABLE `rencanakerja` (
     `status` VARCHAR(191) NOT NULL,
     `userId` INTEGER NULL,
 
-    UNIQUE INDEX `rencanakerja_Id_key`(`Id`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `files` (
-    `Id` INTEGER NOT NULL,
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `file` VARCHAR(191) NOT NULL,
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `rencanakerjaId` INTEGER NULL,
     `jenisFileId` INTEGER NULL,
 
-    UNIQUE INDEX `files_Id_key`(`Id`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `jenisFile` (
-    `Id` INTEGER NOT NULL,
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `jenisFile` VARCHAR(191) NOT NULL,
     `filesId` INTEGER NULL,
 
-    UNIQUE INDEX `jenisFile_Id_key`(`Id`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `gallery` (
-    `Id` INTEGER NOT NULL,
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `gambar` VARCHAR(191) NOT NULL,
     `filesId` INTEGER NULL,
 
-    UNIQUE INDEX `gallery_Id_key`(`Id`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `kritiksaran` (
-    `Id` INTEGER NOT NULL,
+    `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `subjek` VARCHAR(191) NOT NULL,
     `komentar` VARCHAR(191) NOT NULL,
     `userId` INTEGER NOT NULL,
 
-    UNIQUE INDEX `kritiksaran_Id_key`(`Id`),
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `Roles` ADD CONSTRAINT `Roles_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `profile` ADD CONSTRAINT `profile_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE NO ACTION ON UPDATE CASCADE;

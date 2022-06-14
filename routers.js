@@ -10,6 +10,7 @@ const { CreateLogin } = require("./controllers/login");
 const { GetProfile, CreateProfile, UpdateProfile, DeleteProfile } = require("./controllers/profile");
 const { CreateRegistrasi } = require("./controllers/registrasi");
 const { GetRencanakerja, CreateRencanakerja, UpdateRencanakerja, DeleteRencanakerja } = require("./controllers/rencanakerja");
+const { GetRenjaByUser } = require("./controllers/rencanakerja_by_user");
 const { GetUser, CreateUser, UpdateUser, DeleteUser } = require("./controllers/users");
 const { GetUserInclude } = require("./controllers/user_include");
 const api = express.Router()
@@ -44,11 +45,17 @@ api.post('/jurusan', CreateJurusan)
 api.post('/jurusan/update', UpdateJurusan)
 api.post('/jurusan/delete', DeleteJurusan)
 
+/////////////////////////////
 //rencanakerja
 api.get('/rencanakerja', GetRencanakerja)
 api.post('/rencanakerja', CreateRencanakerja)
 api.post('/rencanakerja/update', UpdateRencanakerja)
 api.post('/rencanakerja/delete', DeleteRencanakerja)
+
+// rencana kerja by user // : = indikasin id bisa diambil
+api.get('/rencanakerja-by-user/:id' , GetRenjaByUser)
+
+//////////////////////////////
 
 //files
 api.get('/files', GetFiles)
