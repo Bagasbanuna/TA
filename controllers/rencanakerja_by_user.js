@@ -18,7 +18,10 @@ const GetRenjaByUser = expressAsyncHandler(async (req, res) => {
           jenisFile: true,
         },
       },
+      
     },
+      
+
   });
 
   res.json(renUse);

@@ -111,7 +111,7 @@ model gallery {
   Files   files? @relation(fields: [filesId], references: [Id])
   filesId Int?
 }
-
+  
 model kritiksaran {
   Id       Int    @id @default(autoincrement())
   subjek   String
