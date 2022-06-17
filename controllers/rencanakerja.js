@@ -13,27 +13,42 @@ const GetRencanakerja = expressAsyncHandler (async (req, res) =>{
 
 const CreateRencanakerja = expressAsyncHandler (async (req, res) =>{
     let body = req.body
-    console.log(body)
- 
+    // console.log(body)
+
     let renja = await prisma.rencanakerja.create({
         data: {
-            
-            title: body.title,
-            tanggal: new Date (body.tanggal), 
             keterangan: body.keterangan,
-            status: body.status,
-            userId: body.userId
+            title: body.title,
             
+            files: {
+                create: {
+                    file: body.file?? undefined
+                }
+            }
         }
     })
 
-    let success = renja !=null
-    let result = {
-        success: success,
-        data: renja
-    }
+    res.status(200).json(renja)
+ 
+    // let renja = await prisma.rencanakerja.create({
+    //     data: {
+            
+    //         title: body.title,
+    //         tanggal: new Date (body.tanggal), 
+    //         keterangan: body.keterangan,
+    //         status: body.status,
+    //         userId: body.userId
+            
+    //     }
+    // })
 
-    res.json(result)
+    // let success = renja !=null
+    // let result = {
+    //     success: success,
+    //     data: renja
+    // }
+
+    // res.json(result)
 })
 
 const UpdateRencanakerja = expressAsyncHandler (async (req, res)=>{

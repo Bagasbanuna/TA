@@ -74,11 +74,11 @@ model jurusan {
 model rencanakerja {
   Id          Int           @id @default(autoincrement())
   title       String
-  tanggal     DateTime
-  keterangan  String
+  tanggal     DateTime?
+  keterangan  String?
   createAt    DateTime?     @default(now())
   updateAt    DateTime?     @updatedAt
-  status      String
+  status      String?
   User        user?         @relation(fields: [userId], references: [Id], onDelete: NoAction)
   userId      Int?
   files       files[]

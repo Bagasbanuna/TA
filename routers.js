@@ -11,14 +11,13 @@ const { GetProfile, CreateProfile, UpdateProfile, DeleteProfile } = require("./c
 const { CreateRegistrasi } = require("./controllers/registrasi");
 const { GetRencanakerja, CreateRencanakerja, UpdateRencanakerja, DeleteRencanakerja } = require("./controllers/rencanakerja");
 const { GetRenjaByUser } = require("./controllers/rencanakerja_by_user");
-const { routeStatusRenja } = require("./controllers/status_renja");
+const { routeStatusRenja, UpdateStatus } = require("./controllers/status_renja");
 const { GetUser, CreateUser, UpdateUser, DeleteUser } = require("./controllers/users");
 const { GetUserInclude } = require("./controllers/user_include");
+const { routeUpload } = require("./upload");
 const api = express.Router()
 
-
-// status renja
-api.use('/status-renja', routeStatusRenja)
+api.use('/upload', routeUpload);
 
 // User
 api.get('/user', GetUser)
@@ -51,6 +50,10 @@ api.post('/jurusan/update', UpdateJurusan)
 api.post('/jurusan/delete', DeleteJurusan)
 
 /////////////////////////////
+// status renja
+api.use('/status-renja', routeStatusRenja)
+api.post('/status-renja/update', UpdateStatus)
+
 //rencanakerja
 api.get('/rencanakerja', GetRencanakerja)
 api.post('/rencanakerja', CreateRencanakerja)
