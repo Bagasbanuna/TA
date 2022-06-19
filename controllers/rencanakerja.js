@@ -1,87 +1,119 @@
 const { PrismaClient } = require("@prisma/client");
 const expressAsyncHandler = require("express-async-handler");
 const req = require("express/lib/request");
+const res = require("express/lib/response");
+const { data } = require("jquery");
 const prisma = new PrismaClient();
 
+const GetRencanakerja = expressAsyncHandler(async (req, res) => {
+  let renja = await prisma.rencanakerja.findMany();
 
+  res.json(renja);
+});
 
-const GetRencanakerja = expressAsyncHandler (async (req, res) =>{
-    let renja = await prisma.rencanakerja.findMany();
+// const CreateFile = expressAsyncHandler(async (req, res) => {
+//   let body = req.body;
 
-    res.json(renja);
-})
+//   let file = await prisma.files.create({
+//     data: {
+//       file: body.file,
+//     },
+//   });
 
-const CreateRencanakerja = expressAsyncHandler (async (req, res) =>{
-    let body = req.body
-    // console.log(body)
+//   console.log(file)
+//   res.json(file)
+// });
 
-    let renja = await prisma.rencanakerja.create({
-        data: {
-            keterangan: body.keterangan,
-            title: body.title,
-            
-            files: {
-                create: {
-                    file: body.file?? undefined
-                }
-            }
-        }
-    })
+const CreateRencanakerja = expressAsyncHandler(async (req, res) => {
+  let body = req.body;
+  console.log(body);
 
-    res.status(200).json(renja)
- 
-    // let renja = await prisma.rencanakerja.create({
-    //     data: {
-            
-    //         title: body.title,
-    //         tanggal: new Date (body.tanggal), 
-    //         keterangan: body.keterangan,
-    //         status: body.status,
-    //         userId: body.userId
-            
-    //     }
-    // })
+  let file = await prisma.files.create({
+    data: {
+      file: body.file,
+    },
+  });
 
-    // let success = renja !=null
-    // let result = {
-    //     success: success,
-    //     data: renja
-    // }
+  let renja = await prisma.rencanakerja.create({
+    data: {
+      keterangan: body.keterangan,
+      title: body.title,
+      tanggal: new Date(body.tanggal),
+      userId: body.userId,
 
-    // res.json(result)
-})
-
-const UpdateRencanakerja = expressAsyncHandler (async (req, res)=>{
-    let {Id, title, tanggal, keterangan, status, userId} = req.body
- 
-    let renja = await prisma.rencanakerja.update({
-        data : {
-            Id: Number(Id),
-            title: title,
-            tanggal: new Date (tanggal), 
-            keterangan: keterangan,
-            status: status,
-            userId: Number(userId)
+      files: {
+        connect: {
+          Id: file.Id,
         },
-        where: {
-            Id: Number(Id)
-        }
-    })
+      },
+    },
+  });
 
-    res.json(renja)
-})
+  let bd = {
+    sukes: "iya",
+    data: {
+      renja: renja,
+      file: file,
+    },
+  };
 
-const DeleteRencanakerja = expressAsyncHandler (async (req, res)=> {
-    let {Id} = req.body
+  res.status(200).json(bd);
 
-    let renja = await prisma.rencanakerja.delete({
-        where: {
-            Id: Number(Id)
-        }
-    })
-    res.json(renja)
-})
+  // let renja = await prisma.rencanakerja.create({
+  //     data: {
 
+  //         title: body.title,
+  //         tanggal: new Date (body.tanggal),
+  //         keterangan: body.keterangan,
+  //         status: body.status,
+  //         userId: body.userId
 
+  //     }
+  // })
 
-module.exports = {GetRencanakerja, CreateRencanakerja, UpdateRencanakerja, DeleteRencanakerja}
+  // let success = renja !=null
+  // let result = {
+  //     success: success,
+  //     data: renja
+  // }
+
+  // res.json(result)
+});
+
+const UpdateRencanakerja = expressAsyncHandler(async (req, res) => {
+  let { Id, title, tanggal, keterangan, status, userId } = req.body;
+
+  let renja = await prisma.rencanakerja.update({
+    data: {
+      Id: Number(Id),
+      title: title,
+      tanggal: new Date(tanggal),
+      keterangan: keterangan,
+      status: status,
+      userId: Number(userId),
+    },
+    where: {
+      Id: Number(Id),
+    },
+  });
+
+  res.json(renja);
+});
+
+const DeleteRencanakerja = expressAsyncHandler(async (req, res) => {
+  let { Id } = req.body;
+
+  let renja = await prisma.rencanakerja.delete({
+    where: {
+      Id: Number(Id),
+    },
+  });
+  res.json(renja);
+});
+
+module.exports = {
+  GetRencanakerja,
+  CreateRencanakerja,
+  UpdateRencanakerja,
+  DeleteRencanakerja,
+};

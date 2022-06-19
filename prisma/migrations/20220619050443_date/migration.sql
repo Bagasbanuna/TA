@@ -74,11 +74,11 @@ CREATE TABLE `jurusan` (
 CREATE TABLE `rencanakerja` (
     `Id` INTEGER NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(191) NOT NULL,
-    `tanggal` DATETIME(3) NOT NULL,
-    `keterangan` VARCHAR(191) NOT NULL,
+    `tanggal` DATETIME(3) NULL,
+    `keterangan` VARCHAR(191) NULL,
     `createAt` DATETIME(3) NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updateAt` DATETIME(3) NULL,
-    `status` VARCHAR(191) NOT NULL,
+    `status` VARCHAR(191) NULL,
     `userId` INTEGER NULL,
 
     PRIMARY KEY (`Id`)
@@ -123,6 +123,15 @@ CREATE TABLE `kritiksaran` (
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
+-- CreateTable
+CREATE TABLE `StatusRenja` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(191) NOT NULL,
+    `rencanakerjaId` INTEGER NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 -- AddForeignKey
 ALTER TABLE `Roles` ADD CONSTRAINT `Roles_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
@@ -152,3 +161,6 @@ ALTER TABLE `gallery` ADD CONSTRAINT `gallery_filesId_fkey` FOREIGN KEY (`filesI
 
 -- AddForeignKey
 ALTER TABLE `kritiksaran` ADD CONSTRAINT `kritiksaran_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `user`(`Id`) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `StatusRenja` ADD CONSTRAINT `StatusRenja_rencanakerjaId_fkey` FOREIGN KEY (`rencanakerjaId`) REFERENCES `rencanakerja`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
