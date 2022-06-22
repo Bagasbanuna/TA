@@ -3,13 +3,14 @@ const expressAsyncHandler = require("express-async-handler");
 const prisma = new PrismaClient();
 
 const CreateRegistrasi = expressAsyncHandler (async (req, res)=> {
-    let {email, username, password} = req.body
+    let body = req.body
+    console.log(body)
 
     let reg  = await prisma.user.create({
         data: {
-            email: email,
-            password: password,
-            username: username,
+            email: body.email,
+            password: body.password,
+            username: body.username,
         }
     })
     

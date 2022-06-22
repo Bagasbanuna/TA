@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // app.use(express.static('C:\Users\bagas\OneDrive\Documents\TAbagas\project_ta\public'));
-
+ 
 app.get('/images/:name', (req, res) => {
     if (fs.existsSync(path.join(__dirname, `./uploads/${req.params.name}` ))) {
         res.sendFile(path.join(__dirname, `./uploads/${req.params.name}` ));
