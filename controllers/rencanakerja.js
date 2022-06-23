@@ -6,7 +6,33 @@ const { data } = require("jquery");
 const prisma = new PrismaClient();
 
 const GetRencanakerja = expressAsyncHandler(async (req, res) => {
-  let renja = await prisma.rencanakerja.findMany();
+  let renja = await prisma.rencanakerja.findMany({
+    select: {
+      Id: true,
+      title: true,
+      keterangan: true,
+      tanggal: true,
+      files: {
+        select: {
+          Id: true,
+          file: true,
+          gallery: {
+            select: {
+              Id: true,
+              gambar: true,              
+            }
+          },
+          jenisFile: {
+            select: {
+              Id: true,
+              jenisFile: true,
+            }
+          }
+
+        }
+      }
+    }
+  });
 
   res.json(renja);
 });
@@ -36,9 +62,9 @@ const CreateRencanakerja = expressAsyncHandler(async (req, res) => {
 
   let renja = await prisma.rencanakerja.create({
     data: {
-      keterangan: body.keterangan,
       title: body.title,
       tanggal: new Date(body.tanggal),
+      keterangan: body.keterangan,
       userId: body.userId,
 
       files: {
@@ -58,7 +84,7 @@ const CreateRencanakerja = expressAsyncHandler(async (req, res) => {
   };
 
   res.status(200).json(bd);
-
+ 
   // let renja = await prisma.rencanakerja.create({
   //     data: {
 

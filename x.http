@@ -231,7 +231,7 @@ Content-Type: application/json
     "tanggal": "2022-04-01",
     "keterangan": "Kajian diadakan di masjid",
     "status": "Pending",
-    "userId": 1
+    "files":""
 }
 
 ### update rencanakerja

@@ -95,6 +95,7 @@ model files {
   rencanakerjaId Int?
   gallery        gallery[]
   jenisFileId    Int?
+  isImage Boolean @default(false)
 }
 
 //

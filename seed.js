@@ -223,7 +223,7 @@ async function Coba() {
         })
     }
 
-    console.log("seed ROLES berhasil")
+    console.log("seed divisi berhasil")
 
     const roles = ["guess", "user", "admin", "superAdmin"]
     let indexRoles = 1;
@@ -242,34 +242,34 @@ async function Coba() {
         })
     }
 
-    console.log("berjasil Roles nya")
+    console.log("seed Roles berhasil ")
 
-    let listRencanaKerja = Array.from(Array(20).keys())
-    let indexRenja = 1;
-    for (let rencanakerja of listRencanaKerja) {
-        await prisma.rencanakerja.upsert({
-            where: {
-                Id: indexRenja
-            },
-            create: {
-                Id: indexRenja,
-                title: "user" + indexRenja,
-                tanggal: new Date('2020-11-01'),
-                keterangan: "user"+ indexRenja,
-                status: "user"+ indexRenja
+    // let listRencanaKerja = Array.from(Array(20).keys())
+    // let indexRenja = 1;
+    // for (let rencanakerja of listRencanaKerja) {
+    //     await prisma.rencanakerja.upsert({
+    //         where: {
+    //             Id: indexRenja
+    //         },
+    //         create: {
+    //             Id: indexRenja,
+    //             title: "user" + indexRenja,
+    //             tanggal: new Date('2020-11-01'),
+    //             keterangan: "user"+ indexRenja,
+    //             status: "user"+ indexRenja
 
-            },
-            update: {
-                title: "user" + indexRenja,
-                tanggal: new Date('2020-12-12'),
-                keterangan: "user"+ indexRenja,
-                status: "user"+ indexRenja
-            }
-        })
-        indexRenja++;
-    }
+    //         },
+    //         update: {
+    //             title: "user" + indexRenja,
+    //             tanggal: new Date('2020-12-12'),
+    //             keterangan: "user"+ indexRenja,
+    //             status: "user"+ indexRenja
+    //         }
+    //     })
+    //     indexRenja++;
+    // }
 
-    console.log(" rencana kerja sukses")
+    // console.log("seed rencana kerja berhasil")
 
 
     let listUser = Array.from(Array(20).keys())
@@ -305,7 +305,7 @@ async function Coba() {
             },
             create: {
                 Id: indexProfile,
-                nim: Number(indexProfile),
+                nim: Number(1810100 + indexProfile),
                 namaDepan: "namaDepan" + indexProfile,
                 namaBelakang: "namaBelakang" + indexProfile,
                 alamat: "alamat" + indexProfile,
@@ -319,7 +319,7 @@ async function Coba() {
                 userId: indexProfile
             },
             update: {
-                nim: Number(indexProfile),
+                nim: Number(1810100 + indexProfile),
                 namaDepan: "namaDepan" + indexProfile,
                 namaBelakang: "namaBelakang" + indexProfile,
                 alamat: "alamat" + indexProfile,
