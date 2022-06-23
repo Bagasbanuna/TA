@@ -90,16 +90,16 @@ CREATE TABLE `files` (
     `file` VARCHAR(191) NOT NULL,
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `rencanakerjaId` INTEGER NULL,
-    `jenisFileId` INTEGER NULL,
+    `namaFileId` INTEGER NULL,
     `isImage` BOOLEAN NOT NULL DEFAULT false,
 
     PRIMARY KEY (`Id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
-CREATE TABLE `jenisFile` (
+CREATE TABLE `namaFile` (
     `Id` INTEGER NOT NULL AUTO_INCREMENT,
-    `jenisFile` VARCHAR(191) NOT NULL,
+    `namaFile` VARCHAR(191) NOT NULL,
     `filesId` INTEGER NULL,
 
     PRIMARY KEY (`Id`)
@@ -155,7 +155,7 @@ ALTER TABLE `rencanakerja` ADD CONSTRAINT `rencanakerja_userId_fkey` FOREIGN KEY
 ALTER TABLE `files` ADD CONSTRAINT `files_rencanakerjaId_fkey` FOREIGN KEY (`rencanakerjaId`) REFERENCES `rencanakerja`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE `files` ADD CONSTRAINT `files_jenisFileId_fkey` FOREIGN KEY (`jenisFileId`) REFERENCES `jenisFile`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE `files` ADD CONSTRAINT `files_namaFileId_fkey` FOREIGN KEY (`namaFileId`) REFERENCES `namaFile`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `gallery` ADD CONSTRAINT `gallery_filesId_fkey` FOREIGN KEY (`filesId`) REFERENCES `files`(`Id`) ON DELETE SET NULL ON UPDATE CASCADE;

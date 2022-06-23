@@ -3,7 +3,7 @@ const { GetDivisi, CreateDivisi, UpdateDivisi, DeleteDivisi } = require("./contr
 const { GetFiles, CreateFiles, UpdateFiles, DeleteFiles } = require("./controllers/files");
 const { GetGallery, CreateGallery, UpdateGallery, DeleteGallery } = require("./controllers/gallery");
 const { GetJabatan, CreateJabatan, UpdateJabatan, DeleteJabatan } = require("./controllers/jabatan");
-const { GetJenisfile, CreateJenisfile, UpdateJenisfile, DeleteJenisfile } = require("./controllers/jenisFile");
+const { GetnamaFile, CreatenamaFile, UpdatenamaFile, DeletenamaFile } = require("./controllers/namaFile");
 const { GetJurusan, CreateJurusan, UpdateJurusan, DeleteJurusan } = require("./controllers/jurusan");
 const { GetKritiksaran, CreateKritiksaran, UpdateKritiksaran, DeleteKritiksaran } = require("./controllers/kritiksaran");
 const { CreateLogin } = require("./controllers/login");
@@ -71,11 +71,11 @@ api.post('/files', CreateFiles)
 api.post('/files/update', UpdateFiles)
 api.post('/files/delete', DeleteFiles)
 
-//jenisfile
-api.get('/jenisfile', GetJenisfile)
-api.post('/jenisfile', CreateJenisfile)
-api.post('/jenisfile/update', UpdateJenisfile)
-api.post('/jenisfile/delete', DeleteJenisfile)
+//namaFile
+api.get('/namaFile', GetnamaFile)
+api.post('/namaFile', CreatenamaFile)
+api.post('/namaFile/update', UpdatenamaFile)
+api.post('/namaFile/delete', DeletenamaFile)
 
 //gallery
 api.get('/gallery', GetGallery)

@@ -4,19 +4,19 @@ const prisma = new PrismaClient();
 
 
 
-const GetJenisfile = expressAsyncHandler (async (req,res) =>{
-    let jenf = await prisma.jenisFile.findMany();
+const GetnamaFile = expressAsyncHandler (async (req,res) =>{
+    let jenf = await prisma.namaFile.findMany();
 
     res.json(jenf);
 })
 
-const CreateJenisfile = expressAsyncHandler (async (req, res) =>{
-    let {Id, jenisFile, filesId} = req.body
+const CreatenamaFile = expressAsyncHandler (async (req, res) =>{
+    let {Id, namaFile, filesId} = req.body
 
-    let jenf = await prisma.jenisFile.create({
+    let jenf = await prisma.namaFile.create({
         data: {
             Id: Number(Id),
-            jenisFile: jenisFile,
+            namaFile: namaFile,
             filesId: Number(filesId)
         }
     })
@@ -30,13 +30,13 @@ const CreateJenisfile = expressAsyncHandler (async (req, res) =>{
     res.json(result)
 })
 
-const UpdateJenisfile = expressAsyncHandler (async (req, res)=> {
-    let {Id, jenisFile, filesId} = req.body
+const UpdatenamaFile = expressAsyncHandler (async (req, res)=> {
+    let {Id, namaFile, filesId} = req.body
 
-    let jenf = await prisma.jenisFile.update({
+    let jenf = await prisma.namaFile.update({
         data: {
             Id: Number(Id),
-            jenisFile: jenisFile,
+            namaFile: namaFile,
             filesId: Number(filesId)
         },
         where: {
@@ -46,10 +46,10 @@ const UpdateJenisfile = expressAsyncHandler (async (req, res)=> {
     res.json(jenf)
 })
 
-const DeleteJenisfile = expressAsyncHandler (async (req, res)=> {
+const DeletenamaFile = expressAsyncHandler (async (req, res)=> {
     let {Id} =req.body
 
-    let jenf = await prisma.jenisFile.delete({
+    let jenf = await prisma.namaFile.delete({
         where: {
             Id: Number(Id)
         }
@@ -60,4 +60,4 @@ const DeleteJenisfile = expressAsyncHandler (async (req, res)=> {
 
 
 
-module.exports = {GetJenisfile, CreateJenisfile, UpdateJenisfile, DeleteJenisfile}
+module.exports = {GetnamaFile, CreatenamaFile, UpdatenamaFile, DeletenamaFile}

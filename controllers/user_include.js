@@ -17,7 +17,7 @@ const GetUserInclude = expressAsyncHandler(async (req, res) => {
         include: {
           
           files: {
-            include: { gallery: true, jenisFile: true },
+            include: { gallery: true, namaFile: true },
           },
         },
       },

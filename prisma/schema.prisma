@@ -90,18 +90,18 @@ model files {
   Id             Int           @id @default(autoincrement())
   file           String
   createAt       DateTime      @default(now())
-  jenisFile      jenisFile?    @relation(fields: [jenisFileId], references: [Id])
+  namaFile      namaFile?    @relation(fields: [namaFileId], references: [Id])
   Rencanakerja   rencanakerja? @relation(fields: [rencanakerjaId], references: [Id])
   rencanakerjaId Int?
   gallery        gallery[]
-  jenisFileId    Int?
+  namaFileId    Int?
   isImage Boolean @default(false)
 }
 
 //
-model jenisFile {
+model namaFile {
   Id        Int     @id @default(autoincrement())
-  jenisFile String
+  namaFile String
   filesId   Int?
   files     files[]
 }

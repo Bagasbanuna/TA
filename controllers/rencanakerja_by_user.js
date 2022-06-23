@@ -15,7 +15,7 @@ const GetRenjaByUser = expressAsyncHandler(async (req, res) => {
       files: {
         include: {
           gallery: true,
-          jenisFile: true,
+          namaFile: true,
         },
       },
       
